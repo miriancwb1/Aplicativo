@@ -25,11 +25,6 @@ def opcao_invalida():
  print ('opção invalida!\n')
  voltar_ao_menu_principal()
 
-def listar_restaurante():
-  exibir_subtitulos ('listando os restaurantes')
-
-  for restaurantes in restaurantes:
-    print (f'*{restaurantes}')
 
 def exibir_subtitulos (texto):
   os.system ('clear')
@@ -52,12 +47,12 @@ def cadastar_novo_restaurante():
 def listar_restaurante ():
   exibir_subtitulos ('litando os restaurantes')
 
-  print (f'{"nome do restaurante"}.just (22)] | status)')
+  print (f'{"nome do restaurante".ljust (22)}|{"categoria".ljust(20)} | status')
   for restaurante in restaurantes:
     nome_restaurante = restaurante ['nome'] 
     categoria = restaurante ['categoria'] 
     ativo = 'ativado' if restaurante ['ativo'] else 'desativado'
-    print (f'- { nome_restaurante. ijust (20)} |{categoria.ijust(22)}| {ativo} ' )
+    print (f'- { nome_restaurante.ljust(20)} |{categoria.ljust(22)}| {ativo} ' )
   
   voltar_ao_menu_principal()
 
@@ -75,7 +70,8 @@ def alternar_estado_restaurante():
 
     if not restaurante_encontrado:
       print ('o restaurante nao foi encontrado')
-      voltar_ao_menu_principal()
+
+  voltar_ao_menu_principal()
 
 
 def escolher_opcoes():
@@ -84,25 +80,26 @@ def escolher_opcoes():
   opcao_escolhida = int (input ('escolha uma opção'))
 
   if opcao_escolhida == 1:   
-   cadastar_novo_restaurante
+   cadastar_novo_restaurante()
   elif opcao_escolhida == 2:
    listar_restaurante()
   elif opcao_escolhida == 3:
    alternar_estado_restaurante()
   elif opcao_escolhida == 4:
-    finalizada_app
+    finalizada_app()
   else:
-    opcao_escolhida
+   opcao_invalida()
+
  except:
    opcao_invalida()
     
 def main(): 
-  os.system('cls')
+  os.system('clear')
   exibir_nome_do_progama()
   exibir_opcaoes()
   escolher_opcoes()
 
-  if __name__=='__main__':
+if __name__=='__main__':
     main()
 
 
